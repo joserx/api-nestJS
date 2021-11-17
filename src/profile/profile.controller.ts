@@ -1,4 +1,6 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
+import { filter } from 'rxjs';
+
 
 @Controller('users')
 export class UserController {
@@ -11,4 +13,5 @@ export class UserController {
   findAll(): string {
     return 'Será q funcionou?';
   }
+  
 }
