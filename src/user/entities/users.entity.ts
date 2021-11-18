@@ -8,14 +8,14 @@ export class Users {
   name: string;
 
   @Column()
-  sobrenome: string;
+  password: string;
 
   @Column()
   email: string;
 
   @Column()
-  Tel: string;
+  tel: string;
 
   @Column()
-  Cep: string;
+  cep: string;
 }

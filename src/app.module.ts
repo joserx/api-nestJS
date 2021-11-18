@@ -1,11 +1,10 @@
-import { AuthController } from './auth/controller/auth.controller';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AppController } from './app.controller';
 import { UserController } from './user/controller/users.controller';
+import { AuthController } from './auth/controller/auth.controller';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'reflect-metadata';
 
@@ -24,7 +23,7 @@ import 'reflect-metadata';
     UserModule,
     AuthModule,
   ],
-  controllers: [AuthController, AppController, UserController],
+  controllers: [AppController, UserController, AuthController],
   providers: [AppService],
 })
 export class AppModule {}
