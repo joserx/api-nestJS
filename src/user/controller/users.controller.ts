@@ -8,7 +8,6 @@ import {
   Put,
   HttpStatus,
 } from '@nestjs/common';
-import { Entity } from 'typeorm';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
 
@@ -18,34 +17,20 @@ export class UserController {
 
   @Post()
   async createUsers(@Body() data: UserDto) {
-    const user = await this.userService.create(data);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'User created successfully',
-      user,
-    };
+    return this.userService.create(data);
   }
 
   @Get()
   async showAllUsers() {
-    const users = await this.userService.showAll();
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Users fetched successfully',
-      users,
-    };
+    return this.userService.showAll();
   }
 
-  @Get()
-  findOne(@Param('id') id: number) {
-    return this.userService.findOne(+id);
+  @Get('/:id')
+  async findOne(@Param('id') id: string) {
+    return this.userService.findOne(id);
   }
-  @Patch()
-  async uppdateUser(@Param('id') id: string, @Body() data: '') {
-    await this.userService.update(id, data);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'User updated successfully',
-    };
+  @Put('/:id')
+  async uppdateUser(@Param('id') id: string, @Body() data: UserDto) {
+    return this.userService.update(id, data);
   }
 }

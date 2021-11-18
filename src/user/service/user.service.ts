@@ -1,4 +1,4 @@
-import { Injectable, Req } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserDto } from '../dto/user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from '../entities/users.entity';
@@ -11,9 +11,8 @@ export class UserService {
     private userRepository: Repository<Users>,
   ) {}
   async showAll() {
-    return await this.userRepository.find();
+    return this.userRepository.find();
   }
-  public users: UserDto[] = [];
 
   async create(data: UserDto) {
     const user = this.userRepository.create(data);
@@ -23,20 +22,12 @@ export class UserService {
   async findAll() {
     return this.userRepository.find();
   }
-  async findOne(id) {
-    console.log(this.users);
-    console.log(id);
-    let usuario;
-    this.users.forEach((element) => {
-      if (element.id == id) {
-        usuario = element;
-      }
-    });
-    return usuario;
+  async findOne(id: string): Promise<UserDto> {
+    return this.userRepository.findOne(id);
   }
-  async update(id: string, data: '') {
-    await this.userRepository.update({ id}, data);
-    return this.userRepository.findOne({ 'id' });
+  async update(id: string, data: UserDto) {
+    await this.userRepository.update(id, data);
+    return this.userRepository.findOne(id);
   }
 }
 1;

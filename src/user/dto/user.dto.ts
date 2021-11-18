@@ -8,14 +8,14 @@ export class UserDto {
   name: string;
 
   @IsString()
-  email: string;
+  email?: string;
 
   @IsString()
-  password: string;
+  password?: string;
 
   @IsString()
-  cep: string;
+  cep?: string;
 
   @IsString()
-  tel: string;
+  tel?: string;
 }

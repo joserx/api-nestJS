@@ -1,8 +1,11 @@
+import { AuthController } from './auth/controller/auth.controller';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserController } from './user/controller/users.controller';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'reflect-metadata';
 
@@ -14,13 +17,14 @@ import 'reflect-metadata';
       port: 5432,
       username: 'postgres',
       password: 'senha',
-      database: 'Usuarios',
+      database: '',
       entities: [__dirname + '/**/*.entity.{ts,js}'],
       synchronize: true,
     }),
     UserModule,
+    AuthModule,
   ],
-  controllers: [AppController, UserController],
+  controllers: [AuthController, AppController, UserController],
   providers: [AppService],
 })
 export class AppModule {}
