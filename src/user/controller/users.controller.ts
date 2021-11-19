@@ -20,7 +20,7 @@ export class UserController {
   async findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
-  
+
   @Put('/:id')
   async uppdateUser(@Param('id') id: string, @Body() data: UserDto) {
     return this.userService.update(id, data);

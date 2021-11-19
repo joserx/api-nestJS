@@ -15,7 +15,7 @@ import 'reflect-metadata';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'senha',
+      password: 'password',
       database: '',
       entities: [__dirname + '/**/*.entity.{ts,js}'],
       synchronize: true,

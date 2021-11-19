@@ -7,7 +7,6 @@ import { hash } from 'bcryptjs';
 
 @Injectable()
 export class UserService {
-
   constructor(
     @InjectRepository(Users)
     private userRepository: Repository<Users>,
@@ -35,6 +34,9 @@ export class UserService {
   }
 
   async update(id: string, data: UserDto): Promise<UserDto> {
+    if (data.password) {
+      data.password = await hash(data.password, 10); // número de vezes que a senha vai ser encryptada
+    }
     await this.userRepository.update(id, data);
     return this.userRepository.findOne(id);
   }

@@ -4,13 +4,12 @@ import { UserDto } from '../../user/dto/user.dto';
 
 @Controller('auth')
 export class AuthController {
-
   constructor(private authService: AuthService) {}
 
   @Post('/login')
-  async authencationUsers(@Body() userAuth: UserDto)  {
+  async authencationUsers(@Body() userAuth: UserDto) {
     const res: any = await this.authService.validateUser(userAuth);
-    if(res.error){
+    if (res.error) {
       throw new HttpException(res.message, 400);
     }
     return res;
